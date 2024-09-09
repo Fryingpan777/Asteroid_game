@@ -37,6 +37,9 @@ class Player(CircleShape):
 
         if keys[pygame.K_s]:
             self.move(dt*(-0.5))
+    
+    def draw(self, screen):
+        pygame.draw.polygon(screen, "white", self.triangle(), 2)
 
 
 
