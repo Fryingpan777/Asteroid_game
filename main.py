@@ -5,6 +5,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
+from power_ups import *
 
 def main():
     pygame.init()
@@ -20,11 +21,16 @@ def main():
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
+    wrappable = pygame.sprite.Group()
+    power_up_group = pygame.sprite.Group()
 
     AsteroidField.containers = (updateable)
     Asteroid.containers = (updateable, drawable, asteroids)
-    Player.containers = (updateable, drawable)
-    Shot.containers = (updateable, drawable, shots)
+    Player.containers = (updateable, drawable, wrappable)
+    Shot.containers = (updateable, drawable, shots, wrappable)
+    Speed.containers = (drawable, power_up_group)
+    Machine_gun.containers = (drawable, power_up_group)
+
     asteroid_field_main = AsteroidField()
 
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS)
@@ -59,6 +65,9 @@ def main():
         for i in drawable:
             i.draw(screen)
         
+        for i in wrappable:
+            i.wrap_around()
+        
         for i in asteroids:
             if (player.collision(i) == True) and timer2 <= 0:
                 timer2 += ((timer2*-1)+PLAYER_DAMAGE_COOLDOWN)
@@ -73,6 +82,11 @@ def main():
                     player_score += 1
                     j.kill()
                     i.split()
+        
+        for i in power_up_group:
+            if player.collision(i) == True:
+                i.collect(player)
+            i.counter(dt, player)
 
         
         pygame.display.flip()

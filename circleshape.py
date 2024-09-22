@@ -22,4 +22,14 @@ class CircleShape(pygame.sprite.Sprite):
             return True
         else:
             return False
-
+    
+    def wrap_around(self):
+        if self.position.y > 740:
+            self.position.y -= 760
+        if self.position.y < (-20):
+            self.position.y += 760
+        if self.position.x > 1300:
+            self.position.x -= 1320
+        if self.position.x < (-20):
+            self.position.x += 1320
+        

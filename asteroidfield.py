@@ -1,6 +1,7 @@
 import pygame
 import random
 from asteroid import Asteroid
+from power_ups import *
 from constants import *
 
 
@@ -36,6 +37,14 @@ class AsteroidField(pygame.sprite.Sprite):
         asteroid = Asteroid(position.x, position.y, radius)
         asteroid.velocity = velocity
 
+    def spawn_powerup(self):
+        num = random.randint(0, 11)
+        if num == 5:
+            speed_powerup = Speed((random.randint(40, 1240)), (random.randint(40, 680)))
+        elif num == 10:
+            shoot_powerup = Machine_gun((random.randint(40, 1240)), (random.randint(40, 680)))
+
+
     def update(self, dt):
         self.spawn_timer += dt
         if self.spawn_timer > ASTEROID_SPAWN_RATE:
@@ -48,3 +57,5 @@ class AsteroidField(pygame.sprite.Sprite):
             position = edge[1](random.uniform(0, 1))
             kind = random.randint(1, ASTEROID_KINDS)
             self.spawn(ASTEROID_MIN_RADIUS * kind, position, velocity)
+            self.spawn_powerup()
+
