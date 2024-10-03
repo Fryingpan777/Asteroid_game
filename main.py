@@ -66,7 +66,11 @@ def main():
             i.draw(screen)
         
         for i in wrappable:
-            i.wrap_around()
+            if i.wrap_around() == True:
+                if i in shots:
+                    if i.life > 0:
+                        i.kill()
+                    i.life += 1
         
         for i in asteroids:
             if (player.collision(i) == True) and timer2 <= 0:

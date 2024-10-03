@@ -38,7 +38,7 @@ class AsteroidField(pygame.sprite.Sprite):
         asteroid.velocity = velocity
 
     def spawn_powerup(self):
-        num = random.randint(0, 11)
+        num = random.randint(0, 50)
         if num == 5:
             speed_powerup = Speed((random.randint(40, 1240)), (random.randint(40, 680)))
         elif num == 10:

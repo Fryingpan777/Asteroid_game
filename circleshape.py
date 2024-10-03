@@ -1,4 +1,5 @@
 import pygame
+#from shot import Shot
 
 class CircleShape(pygame.sprite.Sprite):
     def __init__(self, x, y, radius):
@@ -26,10 +27,14 @@ class CircleShape(pygame.sprite.Sprite):
     def wrap_around(self):
         if self.position.y > 740:
             self.position.y -= 760
+            return True
         if self.position.y < (-20):
             self.position.y += 760
+            return True
         if self.position.x > 1300:
             self.position.x -= 1320
+            return True
         if self.position.x < (-20):
             self.position.x += 1320
+            return True
         
