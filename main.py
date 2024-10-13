@@ -30,6 +30,7 @@ def main():
     Shot.containers = (updateable, drawable, shots, wrappable)
     Speed.containers = (drawable, power_up_group)
     Machine_gun.containers = (drawable, power_up_group)
+    Super_bullet.containers = (drawable, power_up_group)
 
     asteroid_field_main = AsteroidField()
 
@@ -41,6 +42,7 @@ def main():
     
     font = pygame.font.Font(None, 36)
     
+    #bg = pygame.image.load("Spacebackground.jpg")
 
     while True:
         for event in pygame.event.get():
@@ -50,6 +52,7 @@ def main():
         health_text = font.render(f'Health: {player_lives}', True, (255, 255, 255))
         score_text = font.render(f"Score: {player_score}", True, (255, 255, 255))
         screen.fill("black")
+        #gameDisplay.blit(bg, (0, 0))
 
         screen.blit(health_text, (10, 10))
         screen.blit(score_text, (10, 50))

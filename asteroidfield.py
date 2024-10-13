@@ -43,6 +43,8 @@ class AsteroidField(pygame.sprite.Sprite):
             speed_powerup = Speed((random.randint(40, 1240)), (random.randint(40, 680)))
         elif num == 10:
             shoot_powerup = Machine_gun((random.randint(40, 1240)), (random.randint(40, 680)))
+        elif num == 14:
+            bullet_powerup = Super_bullet((random.randint(40, 1240)), (random.randint(40, 680)))
 
 
     def update(self, dt):
